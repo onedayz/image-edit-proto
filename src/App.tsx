@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 import 'cropperjs/dist/cropper.css';
 import Cropper from 'cropperjs';
 import './test.css';
@@ -6,17 +6,18 @@ import testImg from './test.jpg';
 
 let cropper: Cropper;
 function App() {
+  const imageRef = useRef<HTMLImageElement | null>(null);
+
   useEffect(() => {
-    setTimeout(() => {
-      const image: any = document.querySelector("#image");
-      const minAspectRatio = 0.5;
-      const maxAspectRatio = 1.5;
-      cropper = new Cropper(image, {
-        ready: function () {
-          var containerData = cropper.getContainerData();
-          var cropBoxData = cropper.getCropBoxData();
-          var aspectRatio = cropBoxData.width / cropBoxData.height;
-          var newCropBoxWidth;
+    const minAspectRatio = 0.5;
+    const maxAspectRatio = 1.5;
+    if (imageRef?.current) {
+      cropper = new Cropper(imageRef.current!, {
+        ready: () => {
+          const containerData = cropper.getContainerData();
+          const cropBoxData = cropper.getCropBoxData();
+          const aspectRatio = cropBoxData.width / cropBoxData.height;
+          let newCropBoxWidth;
 
           if (aspectRatio < minAspectRatio || aspectRatio > maxAspectRatio) {
             newCropBoxWidth =
@@ -29,9 +30,9 @@ function App() {
           }
         },
 
-        cropmove: function () {
-          var cropBoxData = cropper.getCropBoxData();
-          var aspectRatio = cropBoxData.width / cropBoxData.height;
+        cropmove: () => {
+          const cropBoxData = cropper.getCropBoxData();
+          const aspectRatio = cropBoxData.width / cropBoxData.height;
 
           if (aspectRatio < minAspectRatio) {
             cropper.setCropBoxData({
@@ -44,7 +45,9 @@ function App() {
           }
         },
       });
-    }, 1000);
+    }
+
+
 
   }, [])
 
@@ -52,7 +55,7 @@ function App() {
     <div className="container">
       <h1>Cropper with a range of aspect ratio</h1>
       <div>
-        <img id="image" src={testImg} alt="aaapicture" />
+        <img id="image" ref={imageRef} src={testImg} alt="aaapicture" />
       </div>
     </div>
   );
