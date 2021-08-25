@@ -1,9 +1,59 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import 'cropperjs/dist/cropper.css';
+import Cropper from 'cropperjs';
+import './test.css';
+import testImg from './test.jpg';
 
+let cropper: Cropper;
 function App() {
-  return (
-    <div className="App">
+  useEffect(() => {
+    setTimeout(() => {
+      const image: any = document.querySelector("#image");
+      const minAspectRatio = 0.5;
+      const maxAspectRatio = 1.5;
+      cropper = new Cropper(image, {
+        ready: function () {
+          var containerData = cropper.getContainerData();
+          var cropBoxData = cropper.getCropBoxData();
+          var aspectRatio = cropBoxData.width / cropBoxData.height;
+          var newCropBoxWidth;
 
+          if (aspectRatio < minAspectRatio || aspectRatio > maxAspectRatio) {
+            newCropBoxWidth =
+              cropBoxData.height * ((minAspectRatio + maxAspectRatio) / 2);
+
+            cropper.setCropBoxData({
+              left: (containerData.width - newCropBoxWidth) / 2,
+              width: newCropBoxWidth,
+            });
+          }
+        },
+
+        cropmove: function () {
+          var cropBoxData = cropper.getCropBoxData();
+          var aspectRatio = cropBoxData.width / cropBoxData.height;
+
+          if (aspectRatio < minAspectRatio) {
+            cropper.setCropBoxData({
+              width: cropBoxData.height * minAspectRatio,
+            });
+          } else if (aspectRatio > maxAspectRatio) {
+            cropper.setCropBoxData({
+              width: cropBoxData.height * maxAspectRatio,
+            });
+          }
+        },
+      });
+    }, 1000);
+
+  }, [])
+
+  return (
+    <div className="container">
+      <h1>Cropper with a range of aspect ratio</h1>
+      <div>
+        <img id="image" src={testImg} alt="aaapicture" />
+      </div>
     </div>
   );
 }
