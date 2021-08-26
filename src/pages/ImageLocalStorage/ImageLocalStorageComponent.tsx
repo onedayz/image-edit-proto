@@ -28,7 +28,7 @@ function ImageLocalStorageComponent() {
                 localStorage.setItem('filesBase64', JSON.stringify(newList));
                 setImageState(newList);
             } catch (e) {
-                console.log('e', e);
+                alert(e);
             }
 
         });
