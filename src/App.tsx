@@ -1,6 +1,6 @@
 import React from 'react';
 import { BrowserRouter, Link, Redirect, Route, Switch } from 'react-router-dom';
-import ImageEditComponent from './pages/ImageEdit/ImageEditComponent'
+import ImageEditOriginComponent from './pages/ImageEditOrigin/ImageEditOriginComponent'
 import ImageLocalStorageComponent from './pages/ImageLocalStorage/ImageLocalStorageComponent'
 import ExifComponent from './pages/Exif/ExifComponent'
 
@@ -23,7 +23,7 @@ function App() {
             </li>
           </ul>
           <Switch>
-            <Route exact path={`/image`} component={ImageEditComponent} />
+            <Route exact path={`/image`} component={ImageEditOriginComponent} />
             <Route exact path={`/save`} component={ImageLocalStorageComponent} />
             <Route exact path={`/exif`} component={ExifComponent} />
             <Route exact path={`/`}>
