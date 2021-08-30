@@ -1,11 +1,14 @@
-import { useEffect, useRef } from 'react';
+import React, { useEffect, useRef } from 'react';
 import 'cropperjs/dist/cropper.css';
 import Cropper from 'cropperjs';
-import './ImageEditComponent.css';
+import './ImageEditMergeComponent.css';
 import testImg from '../../test.jpg';
+import { Radio } from 'antd';
+
 
 let cropper: Cropper;
-function ImageEditComponent() {
+function ImageEditMergeComponent() {
+    const [radioValue, setRadioValue] = React.useState(2);
     const imageRef = useRef<HTMLImageElement | null>(null);
 
     useEffect(() => {
@@ -13,6 +16,8 @@ function ImageEditComponent() {
         const maxAspectRatio = 1.5;
         if (imageRef?.current) {
             cropper = new Cropper(imageRef.current!, {
+                viewMode: 3,
+                dragMode: 'none',
                 ready: () => {
                     const containerData = cropper.getContainerData();
                     const cropBoxData = cropper.getCropBoxData();
@@ -51,14 +56,26 @@ function ImageEditComponent() {
 
     }, [])
 
+    const onChangeRadio = (e: any) => {
+        console.log('e', e.target.value);
+        setRadioValue(e.target.value);
+    }
+
     return (
         <div className="container">
             <h1>Cropper with a range of aspect ratio</h1>
-            <div>
+
+            <Radio.Group onChange={onChangeRadio} value={radioValue}>
+                <Radio value={2}>2분할</Radio>
+                <Radio value={3}>3분할</Radio>
+                <Radio value={4}>4분할</Radio>
+            </Radio.Group>
+
+            <div className="crossed">
                 <img id="image" ref={imageRef} src={testImg} alt="aaapicture" />
             </div>
         </div>
     );
 }
 
-export default ImageEditComponent;
+export default ImageEditMergeComponent;

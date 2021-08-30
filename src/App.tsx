@@ -1,10 +1,11 @@
 import React from 'react';
 import { BrowserRouter, Link, Redirect, Route, Switch } from 'react-router-dom';
 import ImageEditOriginComponent from './pages/ImageEditOrigin/ImageEditOriginComponent'
+import ImageEditMergeComponent from './pages/ImageEditMerge/ImageEditMergeComponent'
 import ImageLocalStorageComponent from './pages/ImageLocalStorage/ImageLocalStorageComponent'
 import ExifComponent from './pages/Exif/ExifComponent'
 
-
+import './App.css';
 
 function App() {
   return (
@@ -16,6 +17,9 @@ function App() {
               <Link to="/image">image</Link>
             </li>
             <li style={{ display: 'inline-block', border: '1px solid red', margin: '0 5px' }}>
+              <Link to="/merge">merge</Link>
+            </li>
+            <li style={{ display: 'inline-block', border: '1px solid red', margin: '0 5px' }}>
               <Link to="/save">save</Link>
             </li>
             <li style={{ display: 'inline-block', border: '1px solid red', margin: '0 5px' }}>
@@ -24,6 +28,7 @@ function App() {
           </ul>
           <Switch>
             <Route exact path={`/image`} component={ImageEditOriginComponent} />
+            <Route exact path={`/merge`} component={ImageEditMergeComponent} />
             <Route exact path={`/save`} component={ImageLocalStorageComponent} />
             <Route exact path={`/exif`} component={ExifComponent} />
             <Route exact path={`/`}>
