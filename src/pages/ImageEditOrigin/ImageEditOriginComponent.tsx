@@ -1,7 +1,6 @@
 import { useEffect, useRef } from 'react';
 import 'cropperjs/dist/cropper.css';
 import Cropper from 'cropperjs';
-import './ImageEditOriginComponent.css';
 import testImg from '../../test.jpg';
 
 let cropper: Cropper;

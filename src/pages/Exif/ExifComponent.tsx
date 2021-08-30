@@ -1,4 +1,3 @@
-import './ExifComponent.css';
 import testImg from '../../test.jpg';
 import React, { useEffect, useRef, useState } from 'react';
 

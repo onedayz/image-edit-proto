@@ -1,60 +1,34 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import 'cropperjs/dist/cropper.css';
 import Cropper from 'cropperjs';
-import './ImageEditMergeComponent.css';
 import testImg from '../../test.jpg';
-import { Radio } from 'antd';
+import { Col, Radio, Row } from 'antd';
+import Dragger from "antd/lib/upload/Dragger";
 
 
-let cropper: Cropper;
+let croppers: Cropper[];
 function ImageEditMergeComponent() {
     const [radioValue, setRadioValue] = React.useState(2);
-    const imageRef = useRef<HTMLImageElement | null>(null);
+    const imageRef = useRef<any>([]);
+    const [images, setImages] = useState<any>([]);
 
     useEffect(() => {
-        const minAspectRatio = 0.5;
-        const maxAspectRatio = 1.5;
-        if (imageRef?.current) {
-            cropper = new Cropper(imageRef.current!, {
-                viewMode: 3,
-                dragMode: 'none',
-                ready: () => {
-                    const containerData = cropper.getContainerData();
-                    const cropBoxData = cropper.getCropBoxData();
-                    const aspectRatio = cropBoxData.width / cropBoxData.height;
-                    let newCropBoxWidth;
+        console.log('useeEffff')
 
-                    if (aspectRatio < minAspectRatio || aspectRatio > maxAspectRatio) {
-                        newCropBoxWidth =
-                            cropBoxData.height * ((minAspectRatio + maxAspectRatio) / 2);
-
-                        cropper.setCropBoxData({
-                            left: (containerData.width - newCropBoxWidth) / 2,
-                            width: newCropBoxWidth,
-                        });
-                    }
-                },
-
-                cropmove: () => {
-                    const cropBoxData = cropper.getCropBoxData();
-                    const aspectRatio = cropBoxData.width / cropBoxData.height;
-
-                    if (aspectRatio < minAspectRatio) {
-                        cropper.setCropBoxData({
-                            width: cropBoxData.height * minAspectRatio,
-                        });
-                    } else if (aspectRatio > maxAspectRatio) {
-                        cropper.setCropBoxData({
-                            width: cropBoxData.height * maxAspectRatio,
-                        });
-                    }
-                },
-            });
-        }
-
-
-
-    }, [])
+        // const images: any = document.querySelector('#image');
+        // images.forEach((item: any, index: any) => {
+        //     console.log('item', item);
+        // })
+        console.log('imageRef.current', imageRef.current);
+        croppers = [];
+        imageRef.current.map((item: any, index: any) => {
+            if (imageRef.current[index]) {
+                croppers.push(
+                    new Cropper(imageRef.current[index], { viewMode: 3, dragMode: 'none' })
+                );
+            }
+        })
+    }, [radioValue])
 
     const onChangeRadio = (e: any) => {
         console.log('e', e.target.value);
@@ -71,10 +45,51 @@ function ImageEditMergeComponent() {
                 <Radio value={4}>4분할</Radio>
             </Radio.Group>
 
-            <div className="crossed">
-                <img id="image" ref={imageRef} src={testImg} alt="aaapicture" />
-            </div>
-        </div>
+            {radioValue === 2 &&
+                <Row>
+                    <Dragger></Dragger>
+                    <Col><img className="image" ref={(el) => imageRef.current[0] = el} src={testImg} alt="aaapicture" /></Col>
+                    <Col><img className="image" ref={(el) => imageRef.current[1] = el} src={testImg} alt="aaapicture" /></Col>
+                </Row>
+            }
+
+            {radioValue === 3 &&
+                <Row>
+                    <Col>
+                        <img className="image" ref={(el) => imageRef.current[0] = el} src={testImg} alt="aaapicture" />
+                    </Col>
+                    <Col>
+                        <img className="image" ref={(el) => imageRef.current[1] = el} src={testImg} alt="aaapicture" />
+                    </Col>
+                    <Col>
+                        <img className="image" ref={(el) => imageRef.current[2] = el} src={testImg} alt="aaapicture" />
+                    </Col>
+                </Row>
+            }
+
+            {radioValue === 4 &&
+                <>
+                    <Row>
+                        <Col>
+                            <img className="image" ref={(el) => imageRef.current[0] = el} src={testImg} alt="aaapicture" />
+                        </Col>
+                        <Col>
+                            <img className="image" ref={(el) => imageRef.current[1] = el} src={testImg} alt="aaapicture" />
+                        </Col>
+                    </Row>
+                    <Row>
+                        <Col>
+                            <img className="image" ref={(el) => imageRef.current[2] = el} src={testImg} alt="aaapicture" />
+                        </Col>
+                        <Col>
+                            <img className="image" ref={(el) => imageRef.current[3] = el} src={testImg} alt="aaapicture" />
+                        </Col>
+                    </Row>
+                </>
+            }
+
+
+        </div >
     );
 }
 

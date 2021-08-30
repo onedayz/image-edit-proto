@@ -1,1 +1,10 @@
-@import '~antd/dist/antd.css';
+@import "~antd/dist/antd.css";
+
+.container {
+  margin: 20px auto;
+  /* max-width: 640px; */
+}
+
+img {
+  width: 200px;
+}
