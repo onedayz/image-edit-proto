@@ -121,14 +121,14 @@ function ImageEditMergeComponent() {
 
             {radioValue === 2 &&
                 <Row>
-                    <Col style={{ width: '300px', height: '600px' }}>
+                    <Col style={{ width: '320px', height: '640px' }}>
                         <Dragger style={{ width: '100%', height: '100%', padding: 0 }} showUploadList={false} beforeUpload={() => false} onChange={info => {
                             onChangeImage(info, 0);
                         }} disabled={images[0]}>
                             {images[0] ? <img className="image" ref={(el) => imageRef.current[0] = el} src={images[0]} alt="aaapicture" /> : <>이미지를 첨부해주세요.</>}
                         </Dragger>
                     </Col>
-                    <Col style={{ width: '300px', height: '600px', padding: 0 }}>
+                    <Col style={{ width: '320px', height: '640px', padding: 0 }}>
                         <Dragger style={{ width: '100%', height: '100%' }} showUploadList={false} beforeUpload={() => false} onChange={info => { onChangeImage(info, 1); }} disabled={images[1]}>
                             {images[1] ? <img className="image" ref={(el) => imageRef.current[1] = el} src={images[1]} alt="aaapicture" /> : <>이미지를 첨부해주세요.</>}
                         </Dragger>
@@ -138,19 +138,19 @@ function ImageEditMergeComponent() {
 
             {radioValue === 3 &&
                 <Row>
-                    <Col style={{ width: '200px', height: '600px' }}>
+                    <Col style={{ width: '213.333333px', height: '640px' }}>
                         <Dragger style={{ padding: 0 }} showUploadList={false} beforeUpload={() => false} onChange={info => {
                             onChangeImage(info, 0);
                         }} disabled={images[0]}>
                             {images[0] ? <img className="image" ref={(el) => imageRef.current[0] = el} src={images[0]} alt="aaapicture" /> : <>이미지를 첨부해주세요.</>}
                         </Dragger>
                     </Col>
-                    <Col style={{ width: '200px', height: '600px', padding: 0 }}>
+                    <Col style={{ width: '213.333333px', height: '640px', padding: 0 }}>
                         <Dragger showUploadList={false} beforeUpload={() => false} onChange={info => { onChangeImage(info, 1); }} disabled={images[1]}>
                             {images[1] ? <img className="image" ref={(el) => imageRef.current[1] = el} src={images[1]} alt="aaapicture" /> : <>이미지를 첨부해주세요.</>}
                         </Dragger>
                     </Col>
-                    <Col style={{ width: '200px', height: '600px', padding: 0 }}>
+                    <Col style={{ width: '213.333333px', height: '640px', padding: 0 }}>
                         <Dragger showUploadList={false} beforeUpload={() => false} onChange={info => { onChangeImage(info, 2); }} disabled={images[2]}>
                             {images[2] ? <img className="image" ref={(el) => imageRef.current[2] = el} src={images[2]} alt="aaapicture" /> : <>이미지를 첨부해주세요.</>}
                         </Dragger>
@@ -161,26 +161,26 @@ function ImageEditMergeComponent() {
             {radioValue === 4 &&
                 <>
                     <Row>
-                        <Col style={{ width: '200px', height: '400px' }}>
+                        <Col style={{ width: '320px', height: '320px' }}>
                             <Dragger style={{ width: '100%', height: '100%', padding: 0 }} showUploadList={false} beforeUpload={() => false} onChange={info => {
                                 onChangeImage(info, 0);
                             }} disabled={images[0]}>
                                 {images[0] ? <img className="image" ref={(el) => imageRef.current[0] = el} src={images[0]} alt="aaapicture" /> : <>이미지를 첨부해주세요.</>}
                             </Dragger>
                         </Col>
-                        <Col style={{ width: '200px', height: '400px', padding: 0 }}>
+                        <Col style={{ width: '320px', height: '320px', padding: 0 }}>
                             <Dragger style={{ width: '100%', height: '100%' }} showUploadList={false} beforeUpload={() => false} onChange={info => { onChangeImage(info, 1); }} disabled={images[1]}>
                                 {images[1] ? <img className="image" ref={(el) => imageRef.current[1] = el} src={images[1]} alt="aaapicture" /> : <>이미지를 첨부해주세요.</>}
                             </Dragger>
                         </Col>
                     </Row>
                     <Row>
-                        <Col style={{ width: '200px', height: '400px', padding: 0 }}>
+                        <Col style={{ width: '320px', height: '320px', padding: 0 }}>
                             <Dragger showUploadList={false} beforeUpload={() => false} onChange={info => { onChangeImage(info, 2); }} disabled={images[2]}>
                                 {images[2] ? <img className="image" ref={(el) => imageRef.current[2] = el} src={images[2]} alt="aaapicture" /> : <>이미지를 첨부해주세요.</>}
                             </Dragger>
                         </Col>
-                        <Col style={{ width: '200px', height: '400px', padding: 0 }}>
+                        <Col style={{ width: '320px', height: '320px', padding: 0 }}>
                             <Dragger showUploadList={false} beforeUpload={() => false} onChange={info => { onChangeImage(info, 3); }} disabled={images[3]}>
                                 {images[3] ? <img className="image" ref={(el) => imageRef.current[3] = el} src={images[3]} alt="aaapicture" /> : <>이미지를 첨부해주세요.</>}
                             </Dragger>
@@ -190,7 +190,7 @@ function ImageEditMergeComponent() {
             }
 
             <Button onClick={onMergeImage}>합치기</Button>
-        </div >
+        </div>
     );
 }
 

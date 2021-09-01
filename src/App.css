@@ -2,13 +2,13 @@
 
 .container {
   margin: 20px auto;
-  /* max-width: 640px; */
+  min-width: 1280x;
 }
 
 img {
   width: 200px;
 }
 
-.ant-upload.ant-upload-drag .ant-upload{
+.ant-upload.ant-upload-drag .ant-upload {
   padding: 0;
 }

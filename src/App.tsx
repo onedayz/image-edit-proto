@@ -4,6 +4,7 @@ import ImageEditOriginComponent from './pages/ImageEditOrigin/ImageEditOriginCom
 import ImageEditMergeComponent from './pages/ImageEditMerge/ImageEditMergeComponent'
 import ImageLocalStorageComponent from './pages/ImageLocalStorage/ImageLocalStorageComponent'
 import ExifComponent from './pages/Exif/ExifComponent'
+import ToastImageComponent from './pages/ToastImage/ToastImageComponent'
 
 import './App.css';
 
@@ -25,12 +26,16 @@ function App() {
             <li style={{ display: 'inline-block', border: '1px solid red', margin: '0 5px' }}>
               <Link to="/exif">exif</Link>
             </li>
+            <li style={{ display: 'inline-block', border: '1px solid red', margin: '0 5px' }}>
+              <Link to="/toast">toast</Link>
+            </li>
           </ul>
           <Switch>
             <Route exact path={`/image`} component={ImageEditOriginComponent} />
             <Route exact path={`/merge`} component={ImageEditMergeComponent} />
             <Route exact path={`/save`} component={ImageLocalStorageComponent} />
             <Route exact path={`/exif`} component={ExifComponent} />
+            <Route exact path={`/toast`} component={ToastImageComponent} />
             <Route exact path={`/`}>
               <Redirect to="/image" />
             </Route>
