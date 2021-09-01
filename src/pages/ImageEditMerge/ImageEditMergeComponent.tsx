@@ -27,7 +27,7 @@ function ImageEditMergeComponent() {
         imageRef.current.map((item: any, index: any) => {
             if (imageRef.current[index]) {
                 croppers.push(
-                    new Cropper(imageRef.current[index], { viewMode: 3, dragMode: 'none' })
+                    new Cropper(imageRef.current[index], { viewMode: 3, dragMode: 'move' })
                 );
             }
         })
@@ -80,6 +80,9 @@ function ImageEditMergeComponent() {
         const ctx: any = c.getContext("2d");
         const imageObj1 = new Image();
         const imageObj2 = new Image();
+        console.log('cropper', croppers)
+        console.log('1번', croppers[0].getCroppedCanvas())
+        console.log('2번', croppers[1].getCroppedCanvas())
         imageObj1.src = images[0];
         imageObj1.onload = function () {
             ctx.drawImage(imageObj1, 0, 0, 640, 1280);
