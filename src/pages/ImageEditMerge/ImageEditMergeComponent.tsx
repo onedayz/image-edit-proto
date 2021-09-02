@@ -14,9 +14,9 @@ const getBase64 = (file: any) => {
     });
 }
 
-let croppers: Cropper[];
 
 function ImageEditMergeComponent() {
+    let croppers: Cropper[];
     const [radioValue, setRadioValue] = React.useState(2);
     const imageRef = useRef<any>([]);
     const [images, setImages] = useState<any>([undefined, undefined, undefined, undefined]);
@@ -24,13 +24,26 @@ function ImageEditMergeComponent() {
 
     useEffect(() => {
         croppers = [];
-        imageRef.current.map((item: any, index: any) => {
-            if (imageRef.current[index]) {
-                croppers.push(
-                    new Cropper(imageRef.current[index], { viewMode: 3, dragMode: 'move' })
-                );
-            }
-        })
+        const images: any = document.getElementsByClassName('image');
+        console.log('images', images);
+
+
+        var length = images.length;
+        for (let i = 0; i < length; i++) {
+            croppers.push(
+                //   new Cropper(images[i])
+                new Cropper(images[i], { viewMode: 3, dragMode: 'move' })
+            );
+
+        }
+
+        // imageRef.current.map((item: any, index: any) => {
+        //     if (imageRef.current[index]) {
+        //         croppers.push(
+        //             new Cropper(imageRef.current[index], { viewMode: 3, dragMode: 'move' })
+        //         );
+        //     }
+        // })
         console.log('image', images);
     }, [radioValue, images])
 

@@ -5,6 +5,8 @@ import ImageEditMergeComponent from './pages/ImageEditMerge/ImageEditMergeCompon
 import ImageLocalStorageComponent from './pages/ImageLocalStorage/ImageLocalStorageComponent'
 import ExifComponent from './pages/Exif/ExifComponent'
 import ToastImageComponent from './pages/ToastImage/ToastImageComponent'
+import ReactCropperComponent from './pages/ReactCropper/ReactCropperComponent'
+import FabricComponent from './pages/Fabric/FabricComponent'
 
 import './App.css';
 
@@ -29,6 +31,12 @@ function App() {
             <li style={{ display: 'inline-block', border: '1px solid red', margin: '0 5px' }}>
               <Link to="/toast">toast</Link>
             </li>
+            <li style={{ display: 'inline-block', border: '1px solid red', margin: '0 5px' }}>
+              <Link to="/reactcropper">react-cropper</Link>
+            </li>
+            <li style={{ display: 'inline-block', border: '1px solid red', margin: '0 5px' }}>
+              <Link to="/fabric">Fabric</Link>
+            </li>
           </ul>
           <Switch>
             <Route exact path={`/image`} component={ImageEditOriginComponent} />
@@ -36,6 +44,8 @@ function App() {
             <Route exact path={`/save`} component={ImageLocalStorageComponent} />
             <Route exact path={`/exif`} component={ExifComponent} />
             <Route exact path={`/toast`} component={ToastImageComponent} />
+            <Route exact path={`/reactcropper`} component={ReactCropperComponent} />
+            <Route exact path={`/fabric`} component={FabricComponent} />
             <Route exact path={`/`}>
               <Redirect to="/image" />
             </Route>
