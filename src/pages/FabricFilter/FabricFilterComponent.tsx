@@ -12,7 +12,7 @@ const getBase64 = (file: any) => {
 }
 
 
-const FabricComponent: React.FC = () => {
+const FabricFilterComponent: React.FC = () => {
     const [canvas, setCanvas] = useState<fabric.Canvas | undefined>();
 
     const initCanvas = () => (
@@ -93,6 +93,34 @@ const FabricComponent: React.FC = () => {
     }
 
 
+    const bri = () => {
+        const obj: any = canvas!.getActiveObject();
+        console.log('obj', obj.filters);
+        if (obj) {
+            const filter = new fabric.Image.filters.Brightness({ brightness: 0.05 });
+            console.log('filter', obj.filters);
+            obj.filters.push(filter);
+            obj.applyFilters();
+            canvas!.renderAll();
+        }
+
+        // if(target) {
+        //     img.filters.push(
+        //         new fabric.Image.filters.Sepia(),
+        //         new fabric.Image.filters.Brightness({ brightness: 100 }));
+        // }
+    }
+
+    const bri2 = () => {
+        const obj: any = canvas!.getActiveObject();
+        if (obj) {
+            const filter = new fabric.Image.filters.Brightness({ brightness: -0.05 });
+            obj.filters.push(filter);
+            obj.applyFilters();
+            canvas!.renderAll();
+        }
+    }
+
     useEffect(() => {
         setCanvas(initCanvas());
     }, []);
@@ -108,8 +136,10 @@ const FabricComponent: React.FC = () => {
             <canvas id="canvas" width={1280} height={1280} style={{ border: "1px solid gray" }} />
             {/* </div> */}
             <button onClick={download}>다운로드</button>
+            <button onClick={bri}>밝게</button>
+            <button onClick={bri2}>어둡게</button>
         </>
     );
 };
 
-export default FabricComponent;
+export default FabricFilterComponent;

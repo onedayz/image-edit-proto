@@ -8,6 +8,7 @@ import ToastImageComponent from './pages/ToastImage/ToastImageComponent'
 import ReactCropperComponent from './pages/ReactCropper/ReactCropperComponent'
 import FabricComponent from './pages/Fabric/FabricComponent'
 import FabricMergeComponent from './pages/FabricMerge/FabricMergeComponent'
+import FabricFilterComponent from './pages/FabricFilter/FabricFilterComponent'
 
 import './App.css';
 
@@ -41,6 +42,9 @@ function App() {
             <li style={{ display: 'inline-block', border: '1px solid red', margin: '0 5px' }}>
               <Link to="/fabricmerge">fabricmerge</Link>
             </li>
+            <li style={{ display: 'inline-block', border: '1px solid red', margin: '0 5px' }}>
+              <Link to="/fabricfilter">fabricfilter</Link>
+            </li>
           </ul>
           <Switch>
             <Route exact path={`/image`} component={ImageEditOriginComponent} />
@@ -51,6 +55,7 @@ function App() {
             <Route exact path={`/reactcropper`} component={ReactCropperComponent} />
             <Route exact path={`/fabric`} component={FabricComponent} />
             <Route exact path={`/fabricmerge`} component={FabricMergeComponent} />
+            <Route exact path={`/fabricfilter`} component={FabricFilterComponent} />
             <Route exact path={`/`}>
               <Redirect to="/image" />
             </Route>
