@@ -3,6 +3,7 @@ import { fabric } from 'fabric';
 import imageCompression from "browser-image-compression";
 import { Col, Row } from "antd";
 import testImg from '../../test.jpg';
+import cropImg from './cropped.jpg';
 
 
 const getBase64 = (file: any) => {
@@ -17,17 +18,17 @@ const getBase64 = (file: any) => {
 
 const FabricMergeComponent: React.FC = () => {
     const [canvas, setCanvas] = useState<any>([]);
-    const [selectState, setSelectState] = useState<any>();
+    const [selectState, setSelectState] = useState<any>(0);
 
     const initCanvas = () => (
         setCanvas([new fabric.Canvas('canvas1', {
-            height: 1280,
-            width: 426.66666,
+            height: 640,
+            width: 320,
             // backgroundColor: 'pink'
         }),
         new fabric.Canvas('canvas2', {
-            height: 1280,
-            width: 426.66666,
+            height: 640,
+            width: 320,
             // backgroundColor: 'pink'
         })])
     );
@@ -81,8 +82,15 @@ const FabricMergeComponent: React.FC = () => {
                         borderColor: 'red',
                         cornerColor: 'green',
                         scaleX: 360 / imgElement.width,
-                        scaleY: 1280 / imgElement.height
+                        scaleY: 1280 / imgElement.height,
+                        originX: 'center',
+                        originY: 'center'
                     });
+                    imgInstance.scaleToHeight(640); // height를 캔버스의 height로 맞춘다
+                    canvas.add(imgInstance);
+
+                    canvas.centerObject(imgInstance); // object center 이동
+
                     canvas.add(imgInstance);
                 }
 
@@ -96,11 +104,11 @@ const FabricMergeComponent: React.FC = () => {
 
     const selectCanvasAdd = () => {
         const imgElement: any = document.createElement("img");
-        imgElement.src = testImg;
+        imgElement.src = cropImg;
         imgElement.onload = function () {
             console.log('20 / imgElement.width', 20 / imgElement.width, imgElement.width);
             console.log('20 / imgElement.height', 20 / imgElement.height, imgElement.height);
-            const imgInstance = new fabric.Image(imgElement, {
+            let imgInstance = new fabric.Image(imgElement, {
                 // left: 100,
                 // top: 100,
                 // angle: 0,
@@ -112,10 +120,16 @@ const FabricMergeComponent: React.FC = () => {
                 cornerSize: 10,
                 borderColor: 'red',
                 cornerColor: 'green',
-                scaleX: 360 / imgElement.width,
-                scaleY: 1280 / imgElement.height
+                // scaleX: 360 / imgElement.width,
+                // scaleY: 360 / imgElement.height,
+                originX: 'center',
+                originY: 'center'
             });
+            imgInstance.scaleToHeight(640); // height를 캔버스의 height로 맞춘다
             canvas[selectState].add(imgInstance);
+
+            canvas[selectState].centerObject(imgInstance); // object center 이동
+
         }
     }
 
