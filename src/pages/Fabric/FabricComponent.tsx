@@ -104,9 +104,9 @@ const FabricComponent: React.FC = () => {
                 id="imageFile"
                 name='imageFile'
                 onChange={imageUpload} />
-            <div className="crossed">
+            {/* <div className="crossed"> */}
                 <canvas id="canvas" width={1280} height={1280} style={{ border: "1px solid gray" }} />
-            </div>
+            {/* </div> */}
             <button onClick={download}>123</button>
         </>
     );
