@@ -1,6 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
 import { fabric } from 'fabric';
-import imageCompression from "browser-image-compression";
 
 const getBase64 = (file: any) => {
     return new Promise((resolve, reject) => {
@@ -12,16 +11,48 @@ const getBase64 = (file: any) => {
 }
 
 
-const FabricComponent: React.FC = () => {
+const FabricGridComponent: React.FC = () => {
     const [canvas, setCanvas] = useState<fabric.Canvas | undefined>();
 
-    const initCanvas = () => (
-        new fabric.Canvas('canvas', {
+    const initCanvas = () => {
+        const canvas: any = new fabric.Canvas('canvas', {
             height: 800,
             width: 800,
-            // backgroundColor: 'pink'
         })
-    );
+
+        function draw_grid(grid_size: any) {
+            grid_size || (grid_size = 25);
+            var currentCanvas: any = document.getElementById('canvas');
+            var grid_context = currentCanvas.getContext("2d");
+
+            var currentCanvasWidth = canvas.getWidth();
+            var currentCanvasHeight = canvas.getHeight();
+
+            // Drawing vertical lines
+            var x;
+            for (x = 0; x <= currentCanvasWidth; x += grid_size) {
+                grid_context.moveTo(x + 0.5, 0);
+                grid_context.lineTo(x + 0.5, currentCanvasHeight);
+            }
+
+            // Drawing horizontal lines
+            var y;
+            for (y = 0; y <= currentCanvasHeight; y += grid_size) {
+                grid_context.moveTo(0, y + 0.5);
+                grid_context.lineTo(currentCanvasWidth, y + 0.5);
+            }
+            grid_context.strokeStyle = "#0000002b";
+            grid_context.stroke();
+        }
+
+        canvas.on('after:render', function (ctx: any) {
+            draw_grid(100);
+        });
+
+        canvas.renderAll();
+
+        return canvas;
+    };
 
     const imageUpload = async (e: any) => {
         const fileSrc = e.target.files[0];
@@ -112,4 +143,4 @@ const FabricComponent: React.FC = () => {
     );
 };
 
-export default FabricComponent;
+export default FabricGridComponent;

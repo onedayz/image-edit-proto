@@ -6,7 +6,7 @@ import ImageLocalStorageComponent from './pages/ImageLocalStorage/ImageLocalStor
 import ExifComponent from './pages/Exif/ExifComponent'
 import ToastImageComponent from './pages/ToastImage/ToastImageComponent'
 import ReactCropperComponent from './pages/ReactCropper/ReactCropperComponent'
-import FabricComponent from './pages/Fabric/FabricComponent'
+import FabricGridComponent from './pages/FabricGrid/FabricGridComponent'
 import FabricMergeComponent from './pages/FabricMerge/FabricMergeComponent'
 import FabricFilterComponent from './pages/FabricFilter/FabricFilterComponent'
 
@@ -37,7 +37,7 @@ function App() {
               <Link to="/reactcropper">react-cropper</Link>
             </li>
             <li style={{ display: 'inline-block', border: '1px solid red', margin: '0 5px' }}>
-              <Link to="/fabric">Fabric</Link>
+              <Link to="/fabricgrid">Fabricgrid</Link>
             </li>
             <li style={{ display: 'inline-block', border: '1px solid red', margin: '0 5px' }}>
               <Link to="/fabricmerge">fabricmerge</Link>
@@ -53,7 +53,7 @@ function App() {
             <Route exact path={`/exif`} component={ExifComponent} />
             <Route exact path={`/toast`} component={ToastImageComponent} />
             <Route exact path={`/reactcropper`} component={ReactCropperComponent} />
-            <Route exact path={`/fabric`} component={FabricComponent} />
+            <Route exact path={`/fabricgrid`} component={FabricGridComponent} />
             <Route exact path={`/fabricmerge`} component={FabricMergeComponent} />
             <Route exact path={`/fabricfilter`} component={FabricFilterComponent} />
             <Route exact path={`/`}>
