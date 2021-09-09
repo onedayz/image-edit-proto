@@ -9,6 +9,7 @@ import ReactCropperComponent from './pages/ReactCropper/ReactCropperComponent'
 import FabricGridComponent from './pages/FabricGrid/FabricGridComponent'
 import FabricMergeComponent from './pages/FabricMerge/FabricMergeComponent'
 import FabricFilterComponent from './pages/FabricFilter/FabricFilterComponent'
+import FabricUndoComponent from './pages/FabricUndo/FabricUndoComponent'
 
 import './App.css';
 
@@ -45,6 +46,9 @@ function App() {
             <li style={{ display: 'inline-block', border: '1px solid red', margin: '0 5px' }}>
               <Link to="/fabricfilter">fabricfilter</Link>
             </li>
+            <li style={{ display: 'inline-block', border: '1px solid red', margin: '0 5px' }}>
+              <Link to="/fabricundo">fabricundo</Link>
+            </li>
           </ul>
           <Switch>
             <Route exact path={`/image`} component={ImageEditOriginComponent} />
@@ -56,6 +60,7 @@ function App() {
             <Route exact path={`/fabricgrid`} component={FabricGridComponent} />
             <Route exact path={`/fabricmerge`} component={FabricMergeComponent} />
             <Route exact path={`/fabricfilter`} component={FabricFilterComponent} />
+            <Route exact path={`/fabricundo`} component={FabricUndoComponent} />
             <Route exact path={`/`}>
               <Redirect to="/image" />
             </Route>
