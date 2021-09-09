@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import { fabric } from 'fabric';
-import 'fabric-history';
+import 'fabric-history'; // undo, redo 기능 import import 제거시 undo, redo 사용불가 삭제하지말것
 
 interface Icanvas extends fabric.Canvas {
     redo: any;
