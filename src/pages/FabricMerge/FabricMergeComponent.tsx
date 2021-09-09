@@ -195,7 +195,6 @@ const FabricMergeComponent: React.FC = () => {
                 id="imageFile"
                 name='imageFile'
                 onChange={imageUpload2} />
-            {/* <div className="crossed"> */}
             {selectState}
             <Row>
                 <Col onClick={() => setSelectState(0)}>
@@ -205,7 +204,6 @@ const FabricMergeComponent: React.FC = () => {
                     <canvas id="canvas2" style={{ border: "1px solid gray" }} />
                 </Col>
             </Row>
-            {/* </div> */}
             <button onClick={onMergeImage}>123</button>
             <button onClick={selectCanvasAdd}>첨부하기</button>
         </>
