@@ -10,6 +10,8 @@ import FabricGridComponent from './pages/FabricGrid/FabricGridComponent'
 import FabricMergeComponent from './pages/FabricMerge/FabricMergeComponent'
 import FabricFilterComponent from './pages/FabricFilter/FabricFilterComponent'
 import FabricUndoComponent from './pages/FabricUndo/FabricUndoComponent'
+import FabricAlertComponent from './pages/FabricAlert/FabricAlertComponent'
+import FabricClipToComponent from './pages/FabricClipTo/FabricClipToComponent'
 
 import './App.css';
 
@@ -49,6 +51,12 @@ function App() {
             <li style={{ display: 'inline-block', border: '1px solid red', margin: '0 5px' }}>
               <Link to="/fabricundo">fabricundo</Link>
             </li>
+            <li style={{ display: 'inline-block', border: '1px solid red', margin: '0 5px' }}>
+              <Link to="/fabricalert">fabricAlert</Link>
+            </li>
+            <li style={{ display: 'inline-block', border: '1px solid red', margin: '0 5px' }}>
+              <Link to="/fabricclipto">fabricclipto</Link>
+            </li>
           </ul>
           <Switch>
             <Route exact path={`/image`} component={ImageEditOriginComponent} />
@@ -61,6 +69,8 @@ function App() {
             <Route exact path={`/fabricmerge`} component={FabricMergeComponent} />
             <Route exact path={`/fabricfilter`} component={FabricFilterComponent} />
             <Route exact path={`/fabricundo`} component={FabricUndoComponent} />
+            <Route exact path={`/fabricalert`} component={FabricAlertComponent} />
+            <Route exact path={`/fabricclipto`} component={FabricClipToComponent} />
             <Route exact path={`/`}>
               <Redirect to="/image" />
             </Route>
