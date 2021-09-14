@@ -1,5 +1,13 @@
 import React, { useEffect, useRef, useState } from "react";
 import { fabric } from 'fabric';
+import 'fabric-history'; // undo, redo 기능 import import 제거시 undo, redo 사용불가 삭제하지말것
+
+interface Icanvas extends fabric.Canvas {
+    redo: any;
+    undo: any;
+    historyUndo: any[];
+    historyRedo: any[];
+}
 
 const getBase64 = (file: any) => {
     return new Promise((resolve, reject) => {
@@ -11,14 +19,39 @@ const getBase64 = (file: any) => {
 }
 
 
-const FabricGridComponent: React.FC = () => {
-    const [canvas, setCanvas] = useState<fabric.Canvas | undefined>();
+const FabricComponent: React.FC = () => {
+    const [canvas, setCanvas] = useState<Icanvas | undefined>();
+
+    const forceUpdate = React.useReducer(() => ({}), {})[1] as () => void;
 
     const initCanvas = () => {
         const canvas: any = new fabric.Canvas('canvas', {
             height: 800,
             width: 800,
+            controlsAboveOverlay: true, // clipPath 영역밖 컨트롤 표시여부
+            backgroundColor: '#fff'
         })
+        canvas.on('history:append', () => {
+            forceUpdate()
+        });
+        canvas.on('history:undo', () => {
+            forceUpdate()
+        });
+        canvas.on('history:redo', () => {
+            forceUpdate()
+        });
+
+        const clipPath = new fabric.Rect({
+            width: 400,
+            height: 400,
+            left: 200,
+            top: 200,
+            stroke: "rgba(0, 0, 0, 0.5)",
+            strokeWidth: 1,
+        });
+
+        canvas.clipPath = clipPath;
+
 
         function draw_grid(grid_size: any) {
             grid_size || (grid_size = 25);
@@ -50,8 +83,8 @@ const FabricGridComponent: React.FC = () => {
             draw_grid(100);
         });
 
-        canvas.renderAll();
 
+        canvas.renderAll();
         return canvas;
     };
 
@@ -60,10 +93,7 @@ const FabricGridComponent: React.FC = () => {
 
         e.target.files.forEach((item: any) => {
             test(item)
-        })
-
-
-
+        });
     };
 
     const test = async (fileSrc: any) => {
@@ -125,6 +155,22 @@ const FabricGridComponent: React.FC = () => {
     }
 
 
+    const canUndo = () => {
+        console.log('canUndo',);
+        if (canvas) {
+            return canvas.historyUndo.length > 0
+        }
+        return false;
+    }
+
+    const canRedo = () => {
+        console.log('canRedo');
+        if (canvas) {
+            return canvas.historyRedo.length > 0
+        }
+        return false;
+    }
+
     useEffect(() => {
         setCanvas(initCanvas());
     }, []);
@@ -140,8 +186,14 @@ const FabricGridComponent: React.FC = () => {
                 <canvas id="canvas" width={1280} height={1280} style={{ border: "1px solid gray" }} />
             </div>
             <button onClick={download}>다운로드</button>
+            <button disabled={!canRedo()} onClick={() => {
+                canvas!.redo();
+            }}>redo</button>
+            <button disabled={!canUndo()} onClick={() => {
+                canvas!.undo();
+            }}>undo</button>
         </>
     );
 };
 
-export default FabricGridComponent;
+export default FabricComponent;
