@@ -5,6 +5,8 @@ import 'fabric-history'; // undo, redo 기능 import import 제거시 undo, redo
 interface Icanvas extends fabric.Canvas {
     redo: any;
     undo: any;
+    historyUndo: any[];
+    historyRedo: any[];
 }
 
 const getBase64 = (file: any) => {
@@ -20,11 +22,22 @@ const getBase64 = (file: any) => {
 const FabricUndoComponent: React.FC = () => {
     const [canvas, setCanvas] = useState<Icanvas | undefined>();
 
+    const forceUpdate = React.useReducer(() => ({}), {})[1] as () => void;
+
     const initCanvas = () => {
         const canvas: any = new fabric.Canvas('canvas', {
             height: 800,
             width: 800,
         })
+        canvas.on('history:append', () => {
+            forceUpdate()
+        });
+        canvas.on('history:undo', () => {
+            forceUpdate()
+        });
+        canvas.on('history:redo', () => {
+            forceUpdate()
+        });
         return canvas;
     };
 
@@ -94,9 +107,22 @@ const FabricUndoComponent: React.FC = () => {
         aTag.click();
     }
 
-    const redo = () => {
+
+    const canUndo = () => {
+        console.log('canUndo',);
+        if (canvas) {
+            return canvas.historyUndo.length > 0
+        }
+        return false;
     }
 
+    const canRedo = () => {
+        console.log('canRedo');
+        if (canvas) {
+            return canvas.historyRedo.length > 0
+        }
+        return false;
+    }
 
     useEffect(() => {
         setCanvas(initCanvas());
@@ -113,10 +139,10 @@ const FabricUndoComponent: React.FC = () => {
                 <canvas id="canvas" width={1280} height={1280} style={{ border: "1px solid gray" }} />
             </div>
             <button onClick={download}>다운로드</button>
-            <button onClick={() => {
+            <button disabled={!canRedo()} onClick={() => {
                 canvas!.redo();
             }}>redo</button>
-            <button onClick={() => {
+            <button disabled={!canUndo()} onClick={() => {
                 canvas!.undo();
             }}>undo</button>
         </>
