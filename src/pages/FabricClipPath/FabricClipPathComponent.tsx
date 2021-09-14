@@ -11,7 +11,7 @@ const getBase64 = (file: any) => {
     });
 }
 
-const FabricClipToComponent: React.FC = () => {
+const FabricClipPathComponent: React.FC = () => {
     const [canvas, setCanvas] = useState<fabric.Canvas | undefined>();
     const [clipPath, setClipPath] = useState<fabric.Object | undefined>();
     const initCanvas = () => {
@@ -146,4 +146,4 @@ const FabricClipToComponent: React.FC = () => {
     );
 };
 
-export default FabricClipToComponent;
+export default FabricClipPathComponent;
