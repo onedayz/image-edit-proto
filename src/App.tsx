@@ -13,6 +13,7 @@ import FabricFilterComponent from './pages/FabricFilter/FabricFilterComponent'
 import FabricUndoComponent from './pages/FabricUndo/FabricUndoComponent'
 import FabricAlertComponent from './pages/FabricAlert/FabricAlertComponent'
 import FabricClipPathComponent from './pages/FabricClipPath/FabricClipPathComponent'
+import ReactDndComponent from './pages/ReactDnd/ReactDndComponent'
 
 import './App.css';
 
@@ -22,6 +23,9 @@ function App() {
       <BrowserRouter>
         <React.Suspense fallback={<div>Loading...</div>}>
           <ul style={{ textAlign: 'center' }}>
+          <li style={{ display: 'inline-block', border: '1px solid red', margin: '0 5px' }}>
+              <Link to="/reactdnd">react-dnd</Link>
+            </li>
             <li style={{ display: 'inline-block', border: '1px solid red', margin: '0 5px' }}>
               <Link to="/image">image</Link>
             </li>
@@ -61,8 +65,10 @@ function App() {
             <li style={{ display: 'inline-block', border: '1px solid red', margin: '0 5px' }}>
               <Link to="/fabricalert">fabricAlert</Link>
             </li>
+         
           </ul>
           <Switch>
+            <Route exact path={`/reactdnd`} component={ReactDndComponent} />
             <Route exact path={`/image`} component={ImageEditOriginComponent} />
             <Route exact path={`/merge`} component={ImageEditMergeComponent} />
             <Route exact path={`/save`} component={ImageLocalStorageComponent} />

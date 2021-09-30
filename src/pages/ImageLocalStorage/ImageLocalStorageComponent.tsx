@@ -31,7 +31,7 @@ function ImageLocalStorageComponent() {
 
 
         const compressedFile = await imageCompression(fileSrc, options); // 이미지 압축
-        console.log('압축파일 용량', compressedFile.size);
+        console.log('압축파일 용량', compressedFile.size, compressedFile);
         console.log('일반파일 용량', fileSrc.size);
         getBase64(compressedFile).then(base64 => {
             try {
