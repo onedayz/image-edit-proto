@@ -144,6 +144,11 @@ const FabricComponent: React.FC = () => {
     }
 
     const download = () => {
+        console.log('canvas object',canvas!._objects[0]);
+        // tl(왼쪽위)
+        // tr(오른쪽위)
+        // bl(아래왼쪽)
+        // br(아래오른쪽)
         const aTag = document.createElement('a');
         aTag.download = 'from_canvas.png';
         aTag.href = canvas!.toDataURL({

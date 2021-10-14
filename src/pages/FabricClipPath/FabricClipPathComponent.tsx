@@ -68,6 +68,7 @@ const FabricClipPathComponent: React.FC = () => {
                         scaleX: 360 / imgElement.width,
                         scaleY: 360 / imgElement.height
                     });
+                    imgInstance.scaleToHeight(640); // height를 캔버스의 height로 맞춘다
                     canvas!.add(imgInstance);
                     canvas!.centerObject(imgInstance); // object center 이동
                 }

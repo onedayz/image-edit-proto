@@ -2,59 +2,39 @@ import React, { useEffect, useRef, useState } from 'react';
 import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
 import { v4 as uuidv4 } from 'uuid';
 const playerList = [
-    { id: uuidv4(), content: "First task" },
-    { id: uuidv4(), content: "Second task" },
-    { id: uuidv4(), content: "Third task" },
-    { id: uuidv4(), content: "Fourth task" },
-    { id: uuidv4(), content: "Fifth task" },
-    { id: uuidv4(), content: "First task" },
-    { id: uuidv4(), content: "Second task" },
-    { id: uuidv4(), content: "Third task" },
-    { id: uuidv4(), content: "Fourth task" },
-    { id: uuidv4(), content: "Fifth task" },
-    { id: uuidv4(), content: "First task" },
-    { id: uuidv4(), content: "Second task" },
-    { id: uuidv4(), content: "Third task" },
-    { id: uuidv4(), content: "Fourth task" },
-    { id: uuidv4(), content: "Fifth task" },
-    { id: uuidv4(), content: "First task" },
-    { id: uuidv4(), content: "Second task" },
-    { id: uuidv4(), content: "Third task" },
-    { id: uuidv4(), content: "Fourth task" },
-    { id: uuidv4(), content: "Fifth task" },
-    { id: uuidv4(), content: "First task" },
-    { id: uuidv4(), content: "Second task" },
-    { id: uuidv4(), content: "Third task" },
-    { id: uuidv4(), content: "Fourth task" },
-    { id: uuidv4(), content: "Fifth task" },
-    { id: uuidv4(), content: "First task" },
-    { id: uuidv4(), content: "Second task" },
-    { id: uuidv4(), content: "Third task" },
-    { id: uuidv4(), content: "Fourth task" },
-    { id: uuidv4(), content: "Fifth task" },
+    { id: uuidv4(), content: "1 task" },
+    { id: uuidv4(), content: "2 task" },
+    { id: uuidv4(), content: "3 task" },
+    { id: uuidv4(), content: "4 task" },
+    { id: uuidv4(), content: "5 task" },
+    { id: uuidv4(), content: "6 task" },
+    { id: uuidv4(), content: "7 task" },
+    { id: uuidv4(), content: "8 task" },
+    { id: uuidv4(), content: "9 task" },
+    { id: uuidv4(), content: "10 task" },
+    { id: uuidv4(), content: "11 task" },
+    { id: uuidv4(), content: "12 task" },
+    { id: uuidv4(), content: "13 task" },
+    { id: uuidv4(), content: "14 task" },
+    { id: uuidv4(), content: "15 task" },
+    { id: uuidv4(), content: "16 task" },
+    { id: uuidv4(), content: "17 task" },
+    { id: uuidv4(), content: "18 task" },
+    { id: uuidv4(), content: "19 task" },
+    { id: uuidv4(), content: "20 task" },
+    { id: uuidv4(), content: "21 task" },
+    { id: uuidv4(), content: "22 task" },
+    { id: uuidv4(), content: "23 task" },
+    { id: uuidv4(), content: "24 task" },
+    { id: uuidv4(), content: "25 task" },
+    { id: uuidv4(), content: "26 task" },
+    { id: uuidv4(), content: "27 task" },
+    { id: uuidv4(), content: "28 task" },
+    { id: uuidv4(), content: "29 task" },
+    { id: uuidv4(), content: "30 task" },
 ];
 
 const rowsFromBackend = {
-    FW: {
-        name: "FW",
-        items: []
-    },
-    FW2: {
-        name: "FW2",
-        items: []
-    },
-    MF: {
-        name: "MF",
-        items: []
-    },
-    DF: {
-        name: "DF",
-        items: []
-    },
-    GK: {
-        name: "GK",
-        items: []
-    },
     List: {
         name: "List",
         items: playerList
@@ -102,24 +82,8 @@ const onDragEnd = (result, rows, setRows) => {
 function ReactDndComponent() {
     const [rows, setRows] = useState(rowsFromBackend);
 
-    const check = () => {
-        if (rows.GK.items.length + rows.DF.items.length + rows.MF.items.length + rows.FW2.items.length + rows.FW.items.length != 11) {
-            console.log('11명이 아니다')
-        }
-        // if(rows.GK.items.length == 1) {
-        //   console.log('안녕')
-        // }
-    }
-    console.log(rows.GK.items.length)
-
     return (
         <div>
-            <div>
-                <button onClick={() => check()}>dd</button>
-                <button onClick={() => check()}>dd</button>
-                <button onClick={() => check()}>dd</button>
-
-            </div>
             <div style={{ display: "flex", justifyContent: "center", flexDirection: 'column', height: '60rem', }}>
                 <DragDropContext
                     onDragEnd={(result) => onDragEnd(result, rows, setRows)}
@@ -129,6 +93,7 @@ function ReactDndComponent() {
                             <div
                                 style={{
                                     display: "flex",
+                                    flexWrap: 'wrap',
                                     flexDirection: "column",
                                     alignItems: "center",
                                     justifyContent: 'center',
