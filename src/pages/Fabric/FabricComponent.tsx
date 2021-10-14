@@ -144,12 +144,7 @@ const FabricComponent: React.FC = () => {
     }
 
     const download = () => {
-        console.log('canvas object',canvas!._objects[0]);
-        // TODO: 아래 각 좌표(x,y)와 object[0]번의 좌표를 비교해서 캔버스를 벗어난 영역이 있는지 검토해보자
-        // tl(왼쪽위)
-        // tr(오른쪽위)
-        // bl(아래왼쪽)
-        // br(아래오른쪽)
+     
         const aTag = document.createElement('a');
         aTag.download = 'from_canvas.png';
         aTag.href = canvas!.toDataURL({
@@ -158,6 +153,32 @@ const FabricComponent: React.FC = () => {
         });
         console.log('aTag.href', aTag.href);
         aTag.click();
+    }
+
+    const checkValidation = () => {
+        const imageObject = canvas!._objects[0];
+        
+        console.log('tl x 200보다 큰가',imageObject.aCoords?.tl.x!, imageObject.aCoords?.tl.x! >= 200 );
+        console.log('tl y 200보다 작은가',imageObject.aCoords?.tl.y!,imageObject.aCoords?.tl.y! >= 200);
+        // tl의 x가 200보다 크거나(x축이 캔버스 영역 침범) y축이 200보다 작거나(y좌표가 캔버스 영역 침범)
+
+        // tl(왼쪽위)
+        const tlCheck = imageObject.aCoords?.tl.x! > 200 || imageObject.aCoords?.tl.y! > 200;
+
+        // tr(오른쪽위)
+        const trCheck = imageObject.aCoords?.tr.x! < 600 || imageObject.aCoords?.tr.y! > 200;
+        
+        // bl(아래왼쪽)
+        const blCheck = imageObject.aCoords?.bl.x! > 200 || imageObject.aCoords?.bl.y! < 600;
+
+        // br(아래오른쪽)
+        const brCheck = imageObject.aCoords?.br.x! < 600 || imageObject.aCoords?.br.y! < 600;
+
+        if(tlCheck || trCheck || blCheck || brCheck) {
+            alert(`틀린곳이 있습니다 tl:${tlCheck} tr:${trCheck} bl:${blCheck} br: ${brCheck}`)
+        } else {
+            alert('통과')
+        }
     }
 
 
@@ -192,6 +213,7 @@ const FabricComponent: React.FC = () => {
                 <canvas id="canvas" width={1280} height={1280} style={{ border: "1px solid gray" }} />
             </div>
             <button onClick={download}>다운로드</button>
+            <button onClick={checkValidation}>체크</button>
             <button disabled={!canRedo()} onClick={() => {
                 canvas!.redo();
             }}>redo</button>
