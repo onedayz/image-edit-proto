@@ -145,6 +145,7 @@ const FabricComponent: React.FC = () => {
 
     const download = () => {
         console.log('canvas object',canvas!._objects[0]);
+        // TODO: 아래 각 좌표(x,y)와 object[0]번의 좌표를 비교해서 캔버스를 벗어난 영역이 있는지 검토해보자
         // tl(왼쪽위)
         // tr(오른쪽위)
         // bl(아래왼쪽)
