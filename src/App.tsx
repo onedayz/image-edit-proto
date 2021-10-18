@@ -15,6 +15,7 @@ import FabricAlertComponent from './pages/FabricAlert/FabricAlertComponent'
 import FabricClipPathComponent from './pages/FabricClipPath/FabricClipPathComponent'
 import ReactDndComponent from './pages/ReactDnd/ReactDndComponent'
 import DndKitComponent from './pages/DndKit/DndKitComponent'
+import DndGridComponent from './pages/DndGrid/DndGridComponent'
 
 import './App.css';
 
@@ -26,6 +27,9 @@ function App() {
           <ul style={{ textAlign: 'center' }}>
             <li style={{ display: 'inline-block', border: '1px solid red', margin: '0 5px' }}>
               <Link to="/dndkit">dnd-kit</Link>
+            </li>
+            <li style={{ display: 'inline-block', border: '1px solid red', margin: '0 5px' }}>
+              <Link to="/dndgrid">DndGrid</Link>
             </li>
             <li style={{ display: 'inline-block', border: '1px solid red', margin: '0 5px' }}>
               <Link to="/reactdnd">react-dnd</Link>
@@ -74,6 +78,7 @@ function App() {
           </ul>
           <Switch>
             <Route exact path={`/dndkit`} component={DndKitComponent} />
+            <Route exact path={`/dndgrid`} component={DndGridComponent} />
             <Route exact path={`/reactdnd`} component={ReactDndComponent} />
             <Route exact path={`/image`} component={ImageEditOriginComponent} />
             <Route exact path={`/merge`} component={ImageEditMergeComponent} />
