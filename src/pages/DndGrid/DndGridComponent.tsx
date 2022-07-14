@@ -18,8 +18,8 @@ const SortableList = SortableContainer(({ items }: any) => {
 });
 
 const DndGridComponent: React.FC<any> = () => {
-    const [state, setState] = useState({
-        items: [
+    const [state, setState] = useState(
+        [
             "Item 1",
             "Item 2",
             "Item 3",
@@ -33,7 +33,7 @@ const DndGridComponent: React.FC<any> = () => {
             "Item 5",
             "Item 6"
         ]
-    });
+    );
 
     // 결과를 재정렬하는 데 도움이 되는 작은 기능
     const reorder = (
@@ -49,13 +49,13 @@ const DndGridComponent: React.FC<any> = () => {
 
     const onSortEnd = ({ oldIndex, newIndex }: any) => {
         setState((prevState: any) => {
-            return { ...prevState, items: reorder(prevState.items, oldIndex, newIndex) };
+            return reorder(prevState, oldIndex, newIndex);
         })
     };
     return <div>
         <SortableList
             axis="xy"
-            items={state.items}
+            items={state}
             onSortEnd={onSortEnd}
         />
     </div>;
