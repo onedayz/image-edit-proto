@@ -132,8 +132,8 @@ const Fabric2Component: React.FC = () => {
             <div>
               <canvas
                 id="canvas"
-                width={600}
-                height={600}
+                width={canvasWidth}
+                height={canvasHeight}
                 style={{ border: "1px solid gray" }}
               />
             </div>
