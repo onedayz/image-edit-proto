@@ -18,6 +18,7 @@ import DndKitComponent from './pages/DndKit/DndKitComponent'
 import DndGridComponent from './pages/DndGrid/DndGridComponent'
 
 import './App.css';
+import Fabric2Component from './pages/Fabric2/Fabric2Component';
 
 function App() {
   return (
@@ -25,7 +26,7 @@ function App() {
       <BrowserRouter>
         <React.Suspense fallback={<div>Loading...</div>}>
           <ul style={{ textAlign: 'center' }}>
-            <li style={{ display: 'inline-block', border: '1px solid red', margin: '0 5px' }}>
+            {/* <li style={{ display: 'inline-block', border: '1px solid red', margin: '0 5px' }}>
               <Link to="/dndkit">dnd-kit</Link>
             </li>
             <li style={{ display: 'inline-block', border: '1px solid red', margin: '0 5px' }}>
@@ -54,8 +55,11 @@ function App() {
             </li>
             <li style={{ display: 'inline-block', border: '1px solid red', margin: '0 5px' }}>
               <Link to="/fabric">Fabric</Link>
-            </li>
+            </li> */}
             <li style={{ display: 'inline-block', border: '1px solid red', margin: '0 5px' }}>
+              <Link to="/fabric2">Fabric2</Link>
+            </li>
+            {/* <li style={{ display: 'inline-block', border: '1px solid red', margin: '0 5px' }}>
               <Link to="/fabricgrid">Fabricgrid</Link>
             </li>
             <li style={{ display: 'inline-block', border: '1px solid red', margin: '0 5px' }}>
@@ -72,7 +76,7 @@ function App() {
             </li>
             <li style={{ display: 'inline-block', border: '1px solid red', margin: '0 5px' }}>
               <Link to="/fabricalert">fabricAlert</Link>
-            </li>
+            </li> */}
 
 
           </ul>
@@ -87,6 +91,7 @@ function App() {
             <Route exact path={`/toast`} component={ToastImageComponent} />
             <Route exact path={`/reactcropper`} component={ReactCropperComponent} />
             <Route exact path={`/fabric`} component={FabricComponent} />
+            <Route exact path={`/fabric2`} component={Fabric2Component} />
             <Route exact path={`/fabricgrid`} component={FabricGridComponent} />
             <Route exact path={`/fabricmerge`} component={FabricMergeComponent} />
             <Route exact path={`/fabricfilter`} component={FabricFilterComponent} />
