@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { fabric } from "fabric";
+// import { fabric } from "fabric";
+import { fabric } from "./fabric_dev.js";
 
 const canvasWidth = 1300; // 캔버스 width
 const canvasHeight = 650; // 캔버스 height
@@ -18,7 +19,7 @@ const getBase64 = (file: any) => {
 };
 
 const Fabric2Component: React.FC = () => {
-  const [canvas, setCanvas] = useState<fabric.Canvas | undefined>();
+  const [canvas, setCanvas] = useState<any>();
 
   const forceUpdate = React.useReducer(() => ({}), {})[1] as () => void;
 
@@ -30,7 +31,7 @@ const Fabric2Component: React.FC = () => {
       enableRetinaScaling: false, // 레티나 디스플레이에서 이미지 크기 자동조정 제거
       backgroundColor: "#fff",
     });
-
+    var info = document.getElementById('info');
     // 편집 이미지 수치가 미세하게 틀어지는 이슈로 인한 반올림 수치 조정
     // ref: https://stackoverflow.com/questions/24874670/loading-from-json-objects-not-scaled
     fabric.Object.NUM_FRACTION_DIGITS = 17;
@@ -38,6 +39,45 @@ const Fabric2Component: React.FC = () => {
     canvas.on("history:append", () => {
       forceUpdate();
     });
+
+    canvas.on('mouse:wheel', function(opt : any) {
+      var text = document.createTextNode(' Wheel ');
+      // @ts-ignore
+      info.insertBefore(text, info.firstChild);
+      var delta = opt.e.deltaY;
+      var zoom = canvas.getZoom();
+      zoom *= 0.999 ** delta;
+      if (zoom > 20) zoom = 20;
+      if (zoom < 0.01) zoom = 0.01;
+      canvas.setZoom(zoom);
+      opt.e.preventDefault();
+      opt.e.stopPropagation();
+    })
+
+    canvas.on('touch:drag', function() {
+      var text = document.createTextNode(' Dragging ');
+      // @ts-ignore
+      info.insertBefore(text, info.firstChild);
+    },)
+
+    canvas.on(
+      'touch:gesture', function (event :any) {
+        var text = document.createTextNode(' Gesture ');
+        // @ts-ignore
+        info.insertBefore(text, info.firstChild);
+    //     let zoomStartScale = 0;
+    //     if (event.e.touches && event.e.touches.length == 2) {
+    //       if (event.self.state === "start") {
+    //         zoomStartScale = canvas.getZoom();
+    //       }
+    //
+    //       let delta = zoomStartScale * event.self.scale;
+    //
+    //       canvas.setZoom(delta);
+    //       canvas.renderAll();
+    //     }
+    });
+
 
     const clipPath = new fabric.Rect({
       width: clipPathWidth,
@@ -118,6 +158,7 @@ const Fabric2Component: React.FC = () => {
         onChange={imageUpload}
       />
       <div>
+        <p id="info"/>
         <div
           style={{ position: "relative", width: "100%", minHeight: "650px" }}
         >
