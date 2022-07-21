@@ -55,16 +55,18 @@ const Fabric2Component: React.FC = () => {
     })
 
     canvas.on('touch:drag', function() {
-      var text = document.createTextNode(' Dragging ');
+      console.log('touch drag');
+      // var text = document.createTextNode(' Dragging ');
       // @ts-ignore
-      info.insertBefore(text, info.firstChild);
+      // info.insertBefore(text, info.firstChild);
     },)
 
     canvas.on(
       'touch:gesture', function (event :any) {
-        var text = document.createTextNode(' Gesture ');
+        console.log('touch gesture');
+        // var text = document.createTextNode(' Gesture ');
         // @ts-ignore
-        info.insertBefore(text, info.firstChild);
+        // info.insertBefore(text, info.firstChild);
         var delta = event.e.deltaY;
         var zoom = canvas.getZoom();
         zoom *= 0.999 ** delta;
