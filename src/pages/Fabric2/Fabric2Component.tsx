@@ -65,6 +65,10 @@ const Fabric2Component: React.FC = () => {
         var text = document.createTextNode(' Gesture ');
         // @ts-ignore
         info.insertBefore(text, info.firstChild);
+        var delta = event.e.deltaY;
+        var zoom = canvas.getZoom();
+        zoom *= 0.999 ** delta;
+        canvas.setZoom(zoom);
     //     let zoomStartScale = 0;
     //     if (event.e.touches && event.e.touches.length == 2) {
     //       if (event.self.state === "start") {
